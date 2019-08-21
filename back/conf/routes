@@ -1,0 +1,4 @@
+GET     /resources                  controllers.ResourceController.paragraphs()
+POST    /resources                  controllers.ResourceController.addParagraph()
+
+      
