@@ -1,4 +1,2 @@
-GET     /resources                  controllers.ResourceController.paragraphs()
-POST    /resources                  controllers.ResourceController.addParagraph()
-
-      
+GET     /scene/all                  controllers.SceneController.scenes()
+POST    /scene                      controllers.SceneController.add()
