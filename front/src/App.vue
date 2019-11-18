@@ -1,28 +1,17 @@
 <template>
   <div id="app">
-    <scene-editor v-for="scene in scenes" :key="scene.id" :scene="scene"></scene-editor>
+    <scene-page></scene-page>
   </div>
 </template>
 
 <script>
-import SceneService from "./services/sceneService";
-import SceneEditor from "./components/SceneEditor";
-
+import ScenePage from "./components/ScenePage";
 export default {
   name: 'app',
-  components: {
-    SceneEditor
-  },
-  data() {
-    return {
-      scenes : []
-    }
-  },
-  mounted() {
-    SceneService.getAll().then(scenes => this.scenes = scenes);
-  }
+  components: {ScenePage}
 }
 </script>
 
-<style>
+<style lang="scss">
+
 </style>

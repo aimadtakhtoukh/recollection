@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="scene-editor-wrapper">
     <h3>{{scene.title}}</h3>
     <input type="text" v-model="sceneData.title"/>
     <div v-html="scene.info.template"></div>
@@ -32,6 +32,8 @@
   }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+  .scene-editor-wrapper {
 
+  }
 </style>
