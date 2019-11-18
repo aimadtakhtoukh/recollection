@@ -31,10 +31,38 @@ class SceneController @Inject()(sceneService : SceneService, cc: ControllerCompo
     }
   }
 
+  def update() = Action.async(parse.json) {
+    implicit request => {
+      request.body.validate[Scene].fold(
+        errors =>
+          Future {
+            errors.foreach {
+              case (jsPath, jsError) =>
+                jsError.map(_.toString).foreach(logger.info(_))
+            }
+            BadRequest(errors.mkString)
+          }
+        ,
+        scene => sceneService.update(scene).map(_ => Ok(""))
+      )
+    }
+  }
+
+  def getScene(id : Long) = Action.async {
+    sceneService.byId(id)
+      .map(Json.toJson(_))
+      .map(Ok(_))
+  }
+
   def scenes() = Action.async {
     sceneService.all()
         .map(Json.toJson(_))
         .map(Ok(_))
+  }
+
+  def delete(id : Long) = Action.async {
+    sceneService.delete(id)
+      .map(_ => Ok("Deleted"))
   }
 
 }

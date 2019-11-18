@@ -21,10 +21,11 @@ class SceneService @Inject()
 
   class Scenes(tag : Tag) extends Table[Scene](tag, "scene") {
     def id = column[Long]("id", O.PrimaryKey, O.AutoInc)
+    def title = column[String]("title")
     def info = column[JsValue]("info")
 
     override def * : ProvenShape[Scene] =
-      (id.?, info) <> (Scene.tupled, Scene.unapply)
+      (id.?, title, info) <> (Scene.tupled, Scene.unapply)
   }
 
   val scenes = TableQuery[Scenes]
@@ -37,4 +38,10 @@ class SceneService @Inject()
 
   def save(scene: Scene) : Future[Int] =
     db.run(scenes += scene)
+
+  def update(scene : Scene) : Future[Int] =
+    db.run(scenes.insertOrUpdate(scene))
+
+  def delete(id : Long) =
+    db.run(scenes.filter(_.id === id).delete)
 }

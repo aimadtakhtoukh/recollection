@@ -1,2 +1,5 @@
 GET     /scene/all                  controllers.SceneController.scenes()
-POST    /scene                      controllers.SceneController.add()
+GET     /scene/$id<[0-9]+>          controllers.SceneController.getScene(id : Long)
+POST    /scene/add                  controllers.SceneController.add()
+POST    /scene/update               controllers.SceneController.update()
+DELETE  /scene/$id<[0-9]+>          controllers.SceneController.delete(id : Long)
