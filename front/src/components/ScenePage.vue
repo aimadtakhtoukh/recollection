@@ -31,9 +31,7 @@
                 scenes : []
             }
         },
-        mounted() {
-            SceneService.getAll().then(scenes => this.scenes = scenes);
-        }
+        mounted() {SceneService.getAll().then(scenes => this.scenes = scenes);}
     }
 </script>
 

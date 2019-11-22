@@ -42,6 +42,6 @@ class SceneService @Inject()
   def update(scene : Scene) : Future[Int] =
     db.run(scenes.insertOrUpdate(scene))
 
-  def delete(id : Long) =
+  def delete(id : Long): Future[Int] =
     db.run(scenes.filter(_.id === id).delete)
 }
