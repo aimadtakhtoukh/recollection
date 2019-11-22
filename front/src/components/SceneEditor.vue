@@ -43,7 +43,7 @@
         return new Set(Array.from(this.sceneData.info.template.matchAll(/{{(.*?)}}/g)).map(match => match[1]))
       },
       templateData() {
-        return this.sceneData.info.template.replace(/{{(.*?)}}/g, "{{sceneData.info.vars.$1}}")
+        return '<div>' + this.sceneData.info.template.replace(/{{(.*?)}}/g, "{{sceneData.info.vars.$1}}") + "</div>"
       }
     }
   }
